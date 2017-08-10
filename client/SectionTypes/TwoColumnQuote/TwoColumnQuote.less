@@ -1,0 +1,82 @@
+@-webkit-keyframes moveleft {
+  from { left: -100%;  }
+  to { left: 100%;  }
+}
+
+.twoColumnQuote {
+  background: #fff url('https://femmebot.github.io/google-type/images/valley.jpg') no-repeat;
+  background-size: cover;
+  padding: 250px 0 200px;
+  overflow: hidden;
+
+  .inner {
+    position: relative;
+  }
+
+  .storyHeader h1, .storyHeader p {
+    font: 40px/50px 'Julius Sans One', Helvetica, sans-serif;
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  .storyBody :global(.ql-editor) {
+    border-top: dotted 1px rgba(92, 98, 101, 0.75);
+    border-bottom: dotted 1px rgba(92, 98, 101, 0.75);
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+    -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+    -moz-column-gap: 40px; /* Firefox */
+    column-gap: 40px;
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 40px;
+  }
+
+  .storyBody p {
+    font: 16px/24px 'Crimson Text', Georgia, serif;
+    color: #000;
+    margin: 0 auto 12px;
+    letter-spacing: 0.015em;
+  }
+
+  .quote{
+    margin: 0 auto;
+    :global(.ql-editor) {
+      text-align: center;
+    }
+    p {
+      display: inline-block;
+      font-family: 'Crimson Text', Georgia, serif;
+      width: 70%;
+      font-size: 28px;
+      line-height: 34px;
+      font-style: italic;
+      color: #000;
+      text-align: center;
+      border-top: none;
+      border-bottom: dotted 1px rgba(92, 98, 101, .75);
+      padding-top: 20px;
+      padding-bottom: 50px;
+      -webkit-column-count: 1; /* Chrome, Safari, Opera */
+      -moz-column-count: 1; /* Firefox */
+      column-count: 1;
+    } }
+
+  .wind {
+    pointer-events: none;
+    position: absolute;
+    left: -100%;
+    background: url('https://femmebot.github.io/google-type/images/wind.png');
+    display: block;
+    width: 3000px;
+    height: 800px;
+    top:0;
+    -webkit-animation-name:             moveleft;
+    -webkit-animation-duration:         20s;
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-animation-timing-function: linear;
+    z-index: 100;
+  }
+}
