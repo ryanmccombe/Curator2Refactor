@@ -1,37 +1,20 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
-import { Button, Form, Container, Label } from 'semantic-ui-react';
+import _ from 'lodash';
+import { Container } from 'semantic-ui-react';
 
 import styles from './text.less';
 
 import Options from './options';
 
 class Text extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      body: '<h1>Text Section with Background Image</h1>' +
-      '<p>The British arrived in India in the 1600s, establishing trading posts under the British East India Company which gathered its own enormous private army.</p>' +
-      '<p>In 1857 a large part of the Indian army rebelled against the British authorities, and a year later, the country came under direct British rule; this began the period known as the Raj, meaning "to rule" or "kingdom" in Hindi.</p>' +
-      '<p>The bloody struggle set the tone for the political, social and economic rule established by Britain.</p>'
+  // Dynamic styling based on things the user can change
+  getStyle(currentContent) {
+    return {
+      background: `url(${currentContent.backgroundImage}) no-repeat center`,
+      paddingTop: currentContent.paddingTop + 'px',
+      paddingBottom: currentContent.paddingBottom + 'px'
     };
-
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(value) {
-    this.setState({
-      body: value
-    });
-  }
-
-  getStyleObject(props) {
-    const style = {};
-    props.backgroundImage ? style.background = `url(${props.backgroundImage}) no-repeat center` : null;
-    props.paddingTop ? style.paddingTop = props.paddingTop + 'px' : null;
-    props.paddingBottom ? style.paddingBottom = props.paddingBottom + 'px' : null;
-    return style;
   }
 
   // TODO: Not here
@@ -49,6 +32,9 @@ class Text extends React.PureComponent {
   }
 
   render() {
+    const { section, onEdit } = this.props;
+    const { currentContent } = section;
+
     const quillModules = {
       toolbar: [
         [{ 'header': [1, false] }],
@@ -62,14 +48,14 @@ class Text extends React.PureComponent {
 
 
     return (
-      <div className={styles.storyTypeText + ' ' + styles[this.props.theme]} style={this.getStyleObject(this.props)}>
-        <Container className={styles.inner} textAlign={this.props.alignment || 'left'}>
-          <div className="editing-container">
+      <div className={styles.storyTypeText + ' ' + styles[this.props.theme]} style={this.getStyle(currentContent)}>
+        <Container className={styles.inner} textAlign={currentContent.alignment}>
+          <div className={styles.editingContainer}>
             <ReactQuill
               theme="bubble"
               modules={quillModules}
-              value={this.state.body}
-              onChange={this.handleChange}
+              value={currentContent.body}
+              onChange={value => onEdit('body', value)}
             />
           </div>
         </Container>
@@ -79,6 +65,6 @@ class Text extends React.PureComponent {
 }
 
 // The <Text.options /> subcomponent
-Text.options = Options;
+Text.Options = Options;
 
 export default Text;

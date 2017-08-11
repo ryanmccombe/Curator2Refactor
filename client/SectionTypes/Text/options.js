@@ -2,12 +2,11 @@ import React, { PureComponent } from 'react';
 import { Button, Label, Form } from 'semantic-ui-react';
 
 import Slider from 'react-rangeslider';
-import 'react-rangeslider/lib/index.css';
 
 class TextOptions extends PureComponent {
   constructor(props) {
     super(props);
-    this.options = [
+    this.alignmentOptions = [
       {
         key: 'left',
         text: 'Left',
@@ -22,59 +21,47 @@ class TextOptions extends PureComponent {
         value: 'right',
       },
     ];
-    this.state = {
-      paddingTop: 40,
-      paddingBottom: 80
-    };
-
-    this.handleChange = this.handleChange.bind(this);
   }
-
-  handleChange(prop, val) {
-    this.setState({
-      [prop]: val
-    });
-    this.props.onChange(prop, val);
-  }
-
 
   render() {
+    const { onEdit, onClose, section: { currentContent } } = this.props;
+
     return (
       <Form>
         <Label>Alignment</Label>
         <Form.Select
           fluid
           selection
-          defaultValue="left"
-          onChange={(e, { value }) => this.props.onChange('alignment', value)}
-          options={this.options}
+          defaultValue={currentContent.alignment}
+          onChange={(e, { value }) => onEdit('alignment', value)}
+          options={this.alignmentOptions}
         />
 
         <Label>Background Image</Label>
         <Form.Input
-          placeholder="https://femmebot.github.io/google-type/images/indigo-sea.jpg"
-          onChange={e => this.props.onChange('backgroundImage', e.target.value)}
+          placeholder={currentContent.backgroundImage}
+          onChange={e => onEdit('backgroundImage', e.target.value)}
         />
 
         <Label>Space Above Content</Label>
         <Slider
-          value={this.state.paddingTop}
+          value={currentContent.paddingTop}
           min={1}
           max={1200}
           orientation="horizontal"
-          onChange={val => this.handleChange('paddingTop', val)}
+          onChange={value => onEdit('paddingTop', value)}
         />
 
         <Label>Space Below Content</Label>
         <Slider
-          value={this.state.paddingBottom}
+          value={currentContent.paddingBottom}
           min={1}
           max={1200}
           orientation="horizontal"
-          onChange={val => this.handleChange('paddingBottom', val)}
+          onChange={val => onEdit('paddingBottom', val)}
         />
 
-        <Button type="submit" onClick={this.props.onClose}>Save</Button>
+        <Button type="submit" onClick={onClose}>Close</Button>
       </Form>
     );
   }

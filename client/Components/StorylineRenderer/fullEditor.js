@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import SectionRenderer from '../SectionRenderer/'
+import SectionRenderer from '../SectionRenderer/';
+import SectionEditor from '../../Containers/SectionEditor';
+
 class StorylineRendererFullEditor extends Component {
-  static renderSections(sections) {
+  renderSections(sections) {
     return sections.map(section =>
-      <SectionRenderer key={section.id} section={section} />
+      <SectionEditor storyId={this.props.storyline.id} key={section.id} section={section} />
     );
   }
   render() {
     const { storyline } = this.props;
+
     return (
       <div>
-        {StorylineRendererFullEditor.renderSections(storyline.sections)}
+        {this.renderSections(storyline.sections)}
       </div>
     );
   }
