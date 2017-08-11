@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 
-import { EDIT_SECTION, DELETE_SECTION, ADD_SECTION } from '../Actions';
+import { EDIT_SECTION, DELETE_SECTION, ADD_SECTION, RESTORE_SECTION } from '../Actions';
 
 import sectionRegistry from '../../SectionTypes/';
 
@@ -102,6 +102,28 @@ export default function (state = initialState, action) {
         [storyIndex]: {
           sections: {
             $push: [getNewStoryObject(sectionType, true)]
+          }
+        }
+      });
+    }
+
+    case RESTORE_SECTION: {
+      // Extracting values from the payload
+      const { storyId, sectionId } = action.payload;
+
+      // Find which index the edited storyline is at
+      const storyIndex = getStoryIndexFromId(state, storyId);
+
+      // Find which index the edited section is at
+      const sectionIndex = getSectionIndexFromId(state, storyIndex, sectionId);
+
+      // Update the story's property with the value
+      return update(state, {
+        [storyIndex]: {
+          sections: {
+            [sectionIndex]: {
+              isDeleted: { $set: false }
+            }
           }
         }
       });

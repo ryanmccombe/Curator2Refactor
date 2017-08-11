@@ -9,8 +9,8 @@ export const SAVE_STORYLINE = 'SAVE_STORIES';
 
 export const EDIT_SECTION = 'EDIT_SECTION';
 export const DELETE_SECTION = 'DELETE_SECTION';
+export const RESTORE_SECTION = 'RESTORE_SECTION';
 export const ADD_SECTION = 'ADD_SECTION';
-export const REVERT_SECTION = 'REVERT_SECTION';
 export const SAVE_SECTION = 'SAVE_SECTION';
 
 /*
@@ -42,10 +42,21 @@ export function deleteSection(payload) {
 /*
   Payload:
   id: ID of story to update
+  section: ID of section to delete
+ */
+export function restoreSection(payload) {
+  return {
+    type: RESTORE_SECTION,
+    payload
+  };
+}
+
+/*
+  Payload:
+  id: ID of story to update
   type: Type of section to add
  */
 export function addSection(payload) {
-  console.log('payload', payload)
   return {
     type: ADD_SECTION,
     payload

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Header, Card, Image, Container, Segment, Button } from 'semantic-ui-react';
 
+import SectionRenderer from '../SectionRenderer'
 import SectionTypeRegistry from '../../SectionTypes';
 
 class AddSection extends PureComponent {
@@ -8,10 +9,9 @@ class AddSection extends PureComponent {
     return Object.keys(SectionTypeRegistry).map(sectionName => {
       const section = SectionTypeRegistry[sectionName];
       const { onAdd } = this.props;
-      console.log(onAdd);
       return (
         <Card key={sectionName} raised>
-          <Image src='http://blog.teamtreehouse.com/wp-content/uploads/2013/10/test.png' />
+          <SectionRenderer thumbnail section={{ type: sectionName, currentContent: section.defaultContent }} />
           <Card.Content>
             <Card.Header>
               {section.title}

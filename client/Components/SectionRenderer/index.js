@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Sidebar, Segment, Button, Icon, Dropdown, Container, Menu } from 'semantic-ui-react';
 
+import SectionDeleted from '../SectionDeleted'
+import ThumbnailRenderer from './thumbnailRenderer';
+
 import SectionRegistry from '../../SectionTypes/index';
 
 import styles from './sectionRenderer.less';
@@ -32,13 +35,17 @@ class SectionRenderer extends PureComponent {
   }
 
   render() {
-    const { section, onEdit, onDelete } = this.props;
+    const { section, onEdit, onDelete, onRestore } = this.props;
     const { sidebarVisible } = this.state;
+
+    if (this.props.thumbnail) {
+      return <ThumbnailRenderer sectionDefinition={this.sectionDefinition} {...this.props} />
+    }
 
     if (section.isDeleted) {
       return (
         <div>
-          Section Deleted
+          <SectionDeleted section={section} onRestore={onRestore} />
         </div>
       )
     }
@@ -47,7 +54,7 @@ class SectionRenderer extends PureComponent {
       <Sidebar.Pushable>
         <Sidebar
           as={Menu}
-          animation="overlay"
+          animation="uncover"
           direction="right"
           visible={sidebarVisible}
         >
@@ -59,11 +66,17 @@ class SectionRenderer extends PureComponent {
           <Container className={styles.storyToolbar} textAlign="right">
             <Dropdown placeholder="Select a Theme" selection options={this.getThemeOptions()} button>
             </Dropdown>
-            <Button icon onClick={this.toggleSidebarVisibility} >
+            <Button icon secondary onClick={this.toggleSidebarVisibility} >
               <Icon name="setting" />
             </Button>
-            <Button icon onClick={onDelete}>
+            <Button icon negative onClick={onDelete}>
               <Icon name="trash" />
+            </Button>
+            <Button disabled icon color="orange" onClick={onDelete}>
+              <Icon name="undo" />
+            </Button>
+            <Button disabled icon positive onClick={onDelete}>
+              <Icon name="save" />
             </Button>
           </Container>
           <this.Component sectionDefinition={this.sectionDefinition} section={section} onEdit={onEdit} />

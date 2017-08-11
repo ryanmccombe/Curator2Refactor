@@ -29,7 +29,7 @@ class StorylineEditor extends Component {
   }
 
   render() {
-    const { storyline, addSection, match: { params: { id } } } = this.props;
+    const { storyline, match: { params: { id } } } = this.props;
     return (
       <div>
         <Header activePage="storylines" />

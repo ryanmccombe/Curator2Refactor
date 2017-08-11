@@ -5,8 +5,28 @@
   right: 4px;
   z-index: 5;
 
-  button {
+  xbutton {
     background-color: white !important;
   }
 }
 
+@scale: 0.2;
+@height: 150px;
+
+.thumbnailRenderer {
+  transform: scale(@scale);
+  transform-origin: top left;
+  width: 100% / @scale;
+  pointer-events: none;
+}
+
+.thumbnailRenderer > *:first-child {
+  height: @height / @scale;
+}
+
+.wrapper {
+  position: relative;
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+}
