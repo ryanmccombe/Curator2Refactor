@@ -9,6 +9,7 @@ class AddSection extends PureComponent {
     return Object.keys(SectionTypeRegistry).map(sectionName => {
       const section = SectionTypeRegistry[sectionName];
       const { onAdd } = this.props;
+      const themeCount = (section.availableThemes && section.availableThemes.length) || 1;
       return (
         <Card key={sectionName} raised>
           <SectionRenderer thumbnail section={{ type: sectionName, currentContent: section.defaultContent }} />
@@ -17,7 +18,7 @@ class AddSection extends PureComponent {
               {section.title}
             </Card.Header>
             <Card.Meta>
-              {section.availableThemes.length} Theme{section.availableThemes.length !== 1 ? 's' : ''} Available
+              {themeCount} Theme{themeCount !== 1 ? 's' : ''} Available
             </Card.Meta>
             <Card.Description>
               {section.description}

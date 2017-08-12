@@ -24,9 +24,10 @@ class SectionRenderer extends PureComponent {
     this.sectionDefinition = SectionRegistry[this.props.section.type];
     this.Component = this.sectionDefinition.component;
     this.Options = this.sectionDefinition.optionsComponent;
+    this.availableThemes = this.sectionDefinition.availableThemes || ['Default'];
   }
 
-  getThemeOptions(themes = this.sectionDefinition.availableThemes) {
+  getThemeOptions(themes = this.availableThemes) {
     return themes.map(theme => ({
       text: theme,
       value: theme
@@ -57,7 +58,7 @@ class SectionRenderer extends PureComponent {
           animation="overlay"
           direction="right"
           visible={sidebarVisible}
-          style={{ backgroundColor: 'rgba(255,255,255,.1)' }}
+          style={{ backgroundColor: 'rgba(255,255,255,.2)' }}
         >
           <Segment basic>
             <Button.Group fluid size="large">
@@ -82,12 +83,14 @@ class SectionRenderer extends PureComponent {
               options={this.getThemeOptions()}
               button
             />
-            <this.Options
-              sectionDefinition={this.sectionDefinition}
-              section={section}
-              onEdit={onEdit}
-              onClose={this.toggleSidebarVisibility}
-            />
+            {this.Options ? (
+              <this.Options
+                sectionDefinition={this.sectionDefinition}
+                section={section}
+                onEdit={onEdit}
+                onClose={this.toggleSidebarVisibility}
+              />
+            ) : null}
           </Segment>
         </Sidebar>
         <Sidebar.Pusher>
