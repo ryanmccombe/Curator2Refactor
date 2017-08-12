@@ -32,7 +32,6 @@ class Options extends PureComponent {
             <Icon name='dropdown' /> Overall
           </Accordion.Title>
           <Accordion.Content>
-            <Divider />
             <Form.Field inline>
               <label>Width</label>
               <Slider
@@ -92,78 +91,89 @@ class Options extends PureComponent {
                 onChange={val => onEdit('paddingBottom', val)}
               />
             </Form.Field>
-
-            <Divider />
           </Accordion.Content>
+
           <Accordion.Title>
             <Icon name='dropdown' /> Header
           </Accordion.Title>
           <Accordion.Content>
-            <Label>Header Alignment</Label>
-            <Form.Select
-              fluid
-              selection
-              defaultValue={currentContent.headerAlignment}
-              onChange={(e, { value }) => onEdit('headerAlignment', value)}
-              options={this.alignmentOptions}
-            />
-            <Label>Header Width</Label>
-            <Slider
-              value={currentContent.headerWidth}
-              min={30}
-              max={100}
-              orientation="horizontal"
-              onChange={value => onEdit('headerWidth', value)}
-            />
+            <Form.Field>
+              <label>Header Alignment</label>
+              <Form.Select
+                fluid
+                selection
+                defaultValue={currentContent.headerAlignment}
+                onChange={(e, { value }) => onEdit('headerAlignment', value)}
+                options={this.alignmentOptions}
+              />
+            </Form.Field>
+
+            <Divider />
+
+            <Form.Field>
+              <label>Header Width</label>
+              <Slider
+                value={currentContent.headerWidth}
+                min={30}
+                max={100}
+                orientation="horizontal"
+                onChange={value => onEdit('headerWidth', value)}
+              />
+            </Form.Field>
           </Accordion.Content>
+
           <Accordion.Title>
             <Icon name='dropdown' /> Footer
           </Accordion.Title>
           <Accordion.Content>
-            <Checkbox
-              label="Show Footer"
-              checked={currentContent.showFooter}
-              onChange={(e, { checked }) => onEdit('showFooter', checked)}
-            />
+            <Form.Field inline>
+              <label>Show Footer</label>
+              <Checkbox
+                checked={currentContent.showFooter}
+                onChange={(e, { checked }) => onEdit('showFooter', checked)}
+              />
+            </Form.Field>
 
-            <Label>Footer Alignment</Label>
-            <Form.Select
-              fluid
-              selection
-              defaultValue={currentContent.footerAlignment}
-              onChange={(e, { value }) => onEdit('footerAlignment', value)}
-              options={this.alignmentOptions}
-            />
+            <Divider />
+
+            <Form.Field>
+              <label>Footer Alignment</label>
+              <Form.Select
+                fluid
+                selection
+                defaultValue={currentContent.footerAlignment}
+                onChange={(e, { value }) => onEdit('footerAlignment', value)}
+                options={this.alignmentOptions}
+              />
+            </Form.Field>
           </Accordion.Content>
+
           <Accordion.Title>
             <Icon name='dropdown' /> Animation
           </Accordion.Title>
           <Accordion.Content>
-            <Label>Animation Layer</Label>
-            <Form.Input
-              placeholder={currentContent.animationLayer}
-              onChange={e => onEdit('animationLayer', e.target.value)}
-            />
+            <Form.Field>
+              <label>Animation Layer</label>
+              <Form.Input
+                placeholder={currentContent.animationLayer}
+                onChange={e => onEdit('animationLayer', e.target.value)}
+              />
+            </Form.Field>
 
-            <Label>Animation Opacity</Label>
-            <Slider
-              value={currentContent.animationOpacity}
-              min={0}
-              max={100}
-              orientation="horizontal"
-              onChange={value => onEdit('animationOpacity', value)}
-            />
+            <Divider />
+
+            <Form.Field>
+              <label>Animation Opacity</label>
+              <Slider
+                value={currentContent.animationOpacity}
+                min={0}
+                max={100}
+                orientation="horizontal"
+                onChange={value => onEdit('animationOpacity', value)}
+              />
+            </Form.Field>
           </Accordion.Content>
         </Accordion>
-
-
-
-
-
-
-<br />
-
-        <Button type="submit" onClick={this.props.onClose}>Close</Button>
       </Form>
     );
   }

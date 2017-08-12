@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Sidebar, Segment, Button, Icon, Dropdown, Container, Menu, Card } from 'semantic-ui-react';
 
-import SectionDeleted from '../SectionDeleted'
+import SectionDeleted from '../SectionDeleted';
 import ThumbnailRenderer from './thumbnailRenderer';
 
 import SectionRegistry from '../../SectionTypes/index';
@@ -16,7 +16,8 @@ class SectionRenderer extends PureComponent {
       sidebarVisible: false
     };
 
-    this.toggleSidebarVisibility = () => this.setState({ sidebarVisible: !this.state.sidebarVisible });
+    this.toggleSidebarVisibility = () =>
+      this.setState({ sidebarVisible: !this.state.sidebarVisible });
   }
 
   componentWillMount() {
@@ -26,12 +27,10 @@ class SectionRenderer extends PureComponent {
   }
 
   getThemeOptions(themes = this.sectionDefinition.availableThemes) {
-    return themes.map(theme => {
-      return {
-        text: theme,
-        value: theme
-      };
-    });
+    return themes.map(theme => ({
+      text: theme,
+      value: theme
+    }));
   }
 
   render() {
@@ -39,7 +38,7 @@ class SectionRenderer extends PureComponent {
     const { sidebarVisible } = this.state;
 
     if (this.props.thumbnail) {
-      return <ThumbnailRenderer sectionDefinition={this.sectionDefinition} {...this.props} />
+      return <ThumbnailRenderer sectionDefinition={this.sectionDefinition} {...this.props} />;
     }
 
     if (section.isDeleted) {
@@ -47,41 +46,79 @@ class SectionRenderer extends PureComponent {
         <div>
           <SectionDeleted section={section} onRestore={onRestore} />
         </div>
-      )
+      );
     }
 
     return (
       <Sidebar.Pushable>
         <Sidebar
           width="wide"
-          as={Container}
+          as={Card}
           animation="overlay"
           direction="right"
           visible={sidebarVisible}
-          style={{boxShadow: 'none'}}
+          style={{ backgroundColor: 'rgba(255,255,255,.1)' }}
         >
           <Segment basic>
-            <this.Options sectionDefinition={this.sectionDefinition} section={section} onEdit={onEdit} onClose={this.toggleSidebarVisibility} />
+            <Button.Group fluid size="large">
+              <Button icon negative onClick={onDelete}>
+                <Icon name="trash" />
+              </Button>
+              <Button disabled icon color="orange" onClick={onDelete}>
+                <Icon name="undo" />
+              </Button>
+              <Button disabled icon positive onClick={onDelete}>
+                <Icon name="save" />
+              </Button>
+              <Button floated="right" icon secondary onClick={this.toggleSidebarVisibility} >
+                <Icon name="close" />
+              </Button>
+            </Button.Group>
+            <Dropdown
+              className="ui segment"
+              fluid
+              placeholder="Select a Theme"
+              selection
+              options={this.getThemeOptions()}
+              button
+            />
+            <this.Options
+              sectionDefinition={this.sectionDefinition}
+              section={section}
+              onEdit={onEdit}
+              onClose={this.toggleSidebarVisibility}
+            />
           </Segment>
         </Sidebar>
         <Sidebar.Pusher>
-          <div className={styles.storyToolbar} textAlign="right">
-            <Dropdown placeholder="Select a Theme" selection options={this.getThemeOptions()} button>
-            </Dropdown>
-            <Button icon secondary onClick={this.toggleSidebarVisibility} >
-              <Icon name="setting" />
-            </Button>
-            <Button icon negative onClick={onDelete}>
-              <Icon name="trash" />
-            </Button>
-            <Button disabled icon color="orange" onClick={onDelete}>
-              <Icon name="undo" />
-            </Button>
-            <Button disabled icon positive onClick={onDelete}>
-              <Icon name="save" />
-            </Button>
-          </div>
-          <this.Component sectionDefinition={this.sectionDefinition} section={section} onEdit={onEdit} />
+          {!sidebarVisible ? (
+            <Container className={styles.storyToolbar} textAlign="right">
+              <Dropdown
+                size="large"
+                placeholder="Select a Theme"
+                selection
+                options={this.getThemeOptions()}
+                button
+              />
+              <Button icon negative onClick={onDelete}>
+                <Icon name="trash" />
+              </Button>
+              <Button disabled icon color="orange" onClick={onDelete}>
+                <Icon name="undo" />
+              </Button>
+              <Button disabled icon positive onClick={onDelete}>
+                <Icon name="save" />
+              </Button>
+              <Button icon secondary onClick={this.toggleSidebarVisibility} >
+                <Icon name="setting" />
+              </Button>
+            </Container>
+          ) : null}
+          <this.Component
+            sectionDefinition={this.sectionDefinition}
+            section={section}
+            onEdit={onEdit}
+          />
         </Sidebar.Pusher>
       </Sidebar.Pushable>
     );

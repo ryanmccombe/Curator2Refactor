@@ -13,8 +13,8 @@ const sectionTypeRegistry = {
       '<p>In 1857 a large part of the Indian army rebelled against the British authorities, and a year later, the country came under direct British rule; this began the period known as the Raj, meaning "to rule" or "kingdom" in Hindi.</p>' +
       '<p>The bloody struggle set the tone for the political, social and economic rule established by Britain.</p>',
       backgroundImage: 'https://femmebot.github.io/google-type/images/indigo-sea.jpg',
-      paddingTop: 80,
-      paddingBottom: 40,
+      paddingTop: 120,
+      paddingBottom: 120,
       alignment: 'left'
     },
     availableThemes: [
@@ -38,10 +38,10 @@ const sectionTypeRegistry = {
       width: 70,
       position: 'center',
       backgroundImage: 'https://femmebot.github.io/google-type/images/valley.jpg',
-      headerWidth: 100,
+      headerWidth: 70,
       headerAlignment: 'center',
-      paddingTop: 250,
-      paddingBottom: 200,
+      paddingTop: 150,
+      paddingBottom: 150,
       showFooter: true,
       footerAlignment: 'left',
       animationLayer: 'https://femmebot.github.io/google-type/images/wind.png',
