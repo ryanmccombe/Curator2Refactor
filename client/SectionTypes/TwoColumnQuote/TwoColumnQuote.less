@@ -9,15 +9,17 @@
   padding: 250px 0 200px;
   overflow: hidden;
 
-  .inner {
-    position: relative;
+  :global(.ql-editor) {
+    text-align: unset;
   }
 
   .storyHeader h1, .storyHeader p {
     font: 40px/50px 'Julius Sans One', Helvetica, sans-serif;
-    text-align: center;
-    width: 40%;
     margin: 0 auto;
+  }
+
+  .storyHeader {
+    display: inline-block;
   }
 
   .storyBody :global(.ql-editor) {
@@ -29,9 +31,9 @@
     -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
     -moz-column-gap: 40px; /* Firefox */
     column-gap: 40px;
-    width: 70%;
     margin: 0 auto;
     padding-top: 40px;
+    width: 100%;
   }
 
   .storyBody p {
@@ -44,17 +46,14 @@
   .quote{
     margin: 0 auto;
     :global(.ql-editor) {
-      text-align: center;
     }
     p {
       display: inline-block;
       font-family: 'Crimson Text', Georgia, serif;
-      width: 70%;
       font-size: 28px;
       line-height: 34px;
       font-style: italic;
       color: #000;
-      text-align: center;
       border-top: none;
       border-bottom: dotted 1px rgba(92, 98, 101, .75);
       padding-top: 20px;

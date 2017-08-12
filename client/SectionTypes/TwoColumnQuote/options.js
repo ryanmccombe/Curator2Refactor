@@ -1,0 +1,172 @@
+import React, { PureComponent } from 'react';
+import { Form, Button, Label, Checkbox, Accordion, Icon, Divider } from 'semantic-ui-react';
+import Slider from 'react-rangeslider';
+
+class Options extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.alignmentOptions = [
+      {
+        key: 'left',
+        text: 'Left',
+        value: 'left',
+      }, {
+        key: 'center',
+        text: 'Center',
+        value: 'center',
+      }, {
+        key: 'right',
+        text: 'Right',
+        value: 'right',
+      },
+    ];
+  }
+
+  render() {
+    const { onEdit, section: { currentContent } } = this.props;
+
+    return (
+      <Form>
+        <Accordion styled fluid>
+          <Accordion.Title>
+            <Icon name='dropdown' /> Overall
+          </Accordion.Title>
+          <Accordion.Content>
+            <Divider />
+            <Form.Field inline>
+              <label>Width</label>
+              <Slider
+                value={currentContent.width}
+                min={30}
+                max={100}
+                orientation="horizontal"
+                onChange={value => onEdit('width', value)}
+              />
+            </Form.Field>
+
+            <Divider />
+
+            <Form.Field inline>
+              <label>Position</label>
+              <Form.Select
+                fluid
+                selection
+                defaultValue={currentContent.position}
+                onChange={(e, { value }) => onEdit('position', value)}
+                options={this.alignmentOptions}
+              />
+            </Form.Field>
+
+            <Divider />
+
+            <Form.Field>
+              <label>Background Image</label>
+              <Form.Input
+                placeholder={currentContent.backgroundImage}
+                onChange={e => onEdit('backgroundImage', e.target.value)}
+              />
+            </Form.Field>
+
+            <Divider />
+
+            <Form.Field>
+              <label>Space Above Content</label>
+              <Slider
+                value={currentContent.paddingTop}
+                min={1}
+                max={1200}
+                orientation="horizontal"
+                onChange={value => onEdit('paddingTop', value)}
+              />
+            </Form.Field>
+
+            <Divider />
+
+            <Form.Field>
+              <label>Space Below Content</label>
+              <Slider
+                value={currentContent.paddingBottom}
+                min={1}
+                max={1200}
+                orientation="horizontal"
+                onChange={val => onEdit('paddingBottom', val)}
+              />
+            </Form.Field>
+
+            <Divider />
+          </Accordion.Content>
+          <Accordion.Title>
+            <Icon name='dropdown' /> Header
+          </Accordion.Title>
+          <Accordion.Content>
+            <Label>Header Alignment</Label>
+            <Form.Select
+              fluid
+              selection
+              defaultValue={currentContent.headerAlignment}
+              onChange={(e, { value }) => onEdit('headerAlignment', value)}
+              options={this.alignmentOptions}
+            />
+            <Label>Header Width</Label>
+            <Slider
+              value={currentContent.headerWidth}
+              min={30}
+              max={100}
+              orientation="horizontal"
+              onChange={value => onEdit('headerWidth', value)}
+            />
+          </Accordion.Content>
+          <Accordion.Title>
+            <Icon name='dropdown' /> Footer
+          </Accordion.Title>
+          <Accordion.Content>
+            <Checkbox
+              label="Show Footer"
+              checked={currentContent.showFooter}
+              onChange={(e, { checked }) => onEdit('showFooter', checked)}
+            />
+
+            <Label>Footer Alignment</Label>
+            <Form.Select
+              fluid
+              selection
+              defaultValue={currentContent.footerAlignment}
+              onChange={(e, { value }) => onEdit('footerAlignment', value)}
+              options={this.alignmentOptions}
+            />
+          </Accordion.Content>
+          <Accordion.Title>
+            <Icon name='dropdown' /> Animation
+          </Accordion.Title>
+          <Accordion.Content>
+            <Label>Animation Layer</Label>
+            <Form.Input
+              placeholder={currentContent.animationLayer}
+              onChange={e => onEdit('animationLayer', e.target.value)}
+            />
+
+            <Label>Animation Opacity</Label>
+            <Slider
+              value={currentContent.animationOpacity}
+              min={0}
+              max={100}
+              orientation="horizontal"
+              onChange={value => onEdit('animationOpacity', value)}
+            />
+          </Accordion.Content>
+        </Accordion>
+
+
+
+
+
+
+<br />
+
+        <Button type="submit" onClick={this.props.onClose}>Close</Button>
+      </Form>
+    );
+  }
+}
+
+export default Options;

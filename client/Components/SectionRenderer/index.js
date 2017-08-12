@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Sidebar, Segment, Button, Icon, Dropdown, Container, Menu } from 'semantic-ui-react';
+import { Sidebar, Segment, Button, Icon, Dropdown, Container, Menu, Card } from 'semantic-ui-react';
 
 import SectionDeleted from '../SectionDeleted'
 import ThumbnailRenderer from './thumbnailRenderer';
@@ -53,17 +53,19 @@ class SectionRenderer extends PureComponent {
     return (
       <Sidebar.Pushable>
         <Sidebar
-          as={Menu}
-          animation="uncover"
+          width="wide"
+          as={Container}
+          animation="overlay"
           direction="right"
           visible={sidebarVisible}
+          style={{boxShadow: 'none'}}
         >
           <Segment basic>
             <this.Options sectionDefinition={this.sectionDefinition} section={section} onEdit={onEdit} onClose={this.toggleSidebarVisibility} />
           </Segment>
         </Sidebar>
         <Sidebar.Pusher>
-          <Container className={styles.storyToolbar} textAlign="right">
+          <div className={styles.storyToolbar} textAlign="right">
             <Dropdown placeholder="Select a Theme" selection options={this.getThemeOptions()} button>
             </Dropdown>
             <Button icon secondary onClick={this.toggleSidebarVisibility} >
@@ -78,7 +80,7 @@ class SectionRenderer extends PureComponent {
             <Button disabled icon positive onClick={onDelete}>
               <Icon name="save" />
             </Button>
-          </Container>
+          </div>
           <this.Component sectionDefinition={this.sectionDefinition} section={section} onEdit={onEdit} />
         </Sidebar.Pusher>
       </Sidebar.Pushable>
