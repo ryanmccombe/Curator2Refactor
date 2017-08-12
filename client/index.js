@@ -48,7 +48,7 @@ const renderApp = Component => {
 
 renderApp(Router);
 
-// Enable hot module replacement for router/index.js or any submodules of it
+// Enable hot module replacement for router/component.js or any submodules of it
 if (module.hot) {
   module.hot.accept('./router', () => {
     renderApp(Router)

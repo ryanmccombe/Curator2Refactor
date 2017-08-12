@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Button, Label, Form, Segment, Divider } from 'semantic-ui-react';
+import { Form, Segment, Divider } from 'semantic-ui-react';
 
 import Slider from 'react-rangeslider';
 
@@ -24,7 +24,7 @@ class TextOptions extends PureComponent {
   }
 
   render() {
-    const { onEdit, onClose, section: { currentContent } } = this.props;
+    const { onEdit, section: { currentContent } } = this.props;
 
     return (
       <Segment>

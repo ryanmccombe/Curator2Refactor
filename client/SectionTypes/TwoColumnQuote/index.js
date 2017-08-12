@@ -1,114 +1,33 @@
-import React from 'react';
-import ReactQuill from 'react-quill'
-import { Form, Button, Container } from 'semantic-ui-react';
+import component from './component';
+import optionsComponent from './options';
 
-import Options from './options';
+export default {
+  title: 'Two Column Quote',
+  description: 'Two Column Quote',
+  component,
+  optionsComponent,
+  defaultContent: {
+    title: '<h1>Two Column Section with Quote</h1>',
+    body: '<p>Within months of independence, India and Pakistan were at war in Kashmir, which lies between the two countries.</p>' +
+    '<p>Under the partition law, Kashmir was free to accede to India or Pakistan. It had a Muslim majority, but a Hindu princely ruler chose to join India.</p>' +
+    '<p>In 1857 a large part of the Indian army rebelled against the British authorities, and a year later, the country came under direct British rule; this began the period known as the Raj, meaning "to rule" or "kingdom" in Hindi.</p>' +
+    '<p>War broke out in October 1947 after Pakistan supported a Muslim insurgency in Kashmir.</p>' +
+    '<p>It lasted until 1 January 1949, with the establishment of a ceasefire line.</p>',
+    quote: '"Any idea of a united India could never have worked, and in my judgement, it would have led us to a terrific disaster"',
+    width: 70,
+    position: 'center',
+    backgroundImage: 'https://femmebot.github.io/google-type/images/valley.jpg',
+    headerWidth: 70,
+    headerAlignment: 'center',
+    paddingTop: 150,
+    paddingBottom: 150,
+    showFooter: true,
+    footerAlignment: 'left',
+    animationLayer: 'https://femmebot.github.io/google-type/images/wind.png',
+    animationOpacity: 100
 
-import styles from './TwoColumnQuote.less';
-
-class TwoColumnQuote extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.modules = {
-      toolbar: [
-        ['bold', 'italic', 'underline','strike'],
-        [{ 'color': ['white', 'black'] }, { 'background': ['white', 'black'] }],
-        // ['link', 'image']
-        ['clean']
-      ],
-    };
-  }
-
-  getStyle(currentContent) {
-    console.log(currentContent.backgroundImage);
-    const styleObject = {
-
-      main: {
-        backgroundImage: `url('${currentContent.backgroundImage}')`,
-        paddingTop: currentContent.paddingTop + 'px',
-        paddingBottom: currentContent.paddingBottom + 'px'
-      },
-      inner: {
-        width: currentContent.width + '%'
-      },
-      headerContainer: {
-        textAlign: currentContent.headerAlignment
-      },
-      header: {
-        width: currentContent.headerWidth + '%',
-      },
-      footer: {
-        display: currentContent.showFooter ? 'initial' : 'none',
-        textAlign: currentContent.footerAlignment
-      },
-      animation: {
-        opacity: currentContent.animationOpacity / 100,
-        background: `url('${currentContent.animationLayer}')`
-      }
-    };
-
-    if (currentContent.position === 'center') {
-      styleObject.inner.margin = '0 auto';
-    } else {
-      console.log(currentContent.position)
-      styleObject.inner.float = currentContent.position;
-    }
-    console.log(styleObject.main.background);
-
-    return styleObject;
-  }
-
-  render() {
-    const { onEdit, section: { currentContent } } = this.props;
-    const style = this.getStyle(currentContent);
-    return (
-      <div className={styles.twoColumnQuote} style={style.main}>
-        <Container className={styles.inner} >
-          <div style={style.inner}>
-          <div style={style.headerContainer}>
-          <ReactQuill
-            className={styles.storyHeader}
-            style={style.header}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.title}
-            onChange={value => onEdit('title', value)}
-          />
-          </div>
-
-          <ReactQuill
-            className={styles.storyBody}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.body}
-            onChange={value => onEdit('body', value)}
-          />
-
-          <ReactQuill
-            className={styles.quote}
-            style={style.footer}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.quote}
-            onChange={value => {
-
-              // TODO: Null check here because for some reason Quill is calling
-              // onChange on this editor on initialisation
-              // Causes an exception on the thumbnail renderer as onEdit is not passed
-              // Shouldn't be a problem once read only mode is implemented
-              onEdit && onEdit('quote', value);
-            }
-            }
-          />
-          <div className={styles.wind} style={style.animation} />
-          </div>
-        </Container>
-      </div>
-    );
-  }
-}
-
-TwoColumnQuote.Options = Options;
-
-export default TwoColumnQuote;
+  },
+  availableThemes: [
+    'Partition'
+  ]
+};

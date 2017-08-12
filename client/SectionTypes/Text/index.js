@@ -1,70 +1,22 @@
-import React from 'react';
-import ReactQuill from 'react-quill';
-import _ from 'lodash';
-import { Container } from 'semantic-ui-react';
+import component from './component';
+import optionsComponent from './options';
 
-import styles from './text.less';
-
-import Options from './options';
-
-class Text extends React.PureComponent {
-  // Dynamic styling based on things the user can change
-  getStyle(currentContent) {
-    return {
-      background: `url(${currentContent.backgroundImage}) no-repeat center`,
-      paddingTop: currentContent.paddingTop + 'px',
-      paddingBottom: currentContent.paddingBottom + 'px'
-    };
-  }
-
-  // TODO: Not here
-  getColourPalette(theme = this.props.theme) {
-    if (theme === 'partition') {
-      return [
-        'black',
-        'white',
-        '#7cb342',
-        '#6e80e2',
-        '#bb1919'
-      ];
-    }
-    return ['black', 'white'];
-  }
-
-  render() {
-    const { section, onEdit } = this.props;
-    const { currentContent } = section;
-
-    const quillModules = {
-      toolbar: [
-        [{ 'header': [1, false] }],
-        ['bold', 'italic', 'underline','strike', 'blockquote'],
-        // [{'list': 'ordered'}, {'list': 'bullet'}],
-        [{ 'color': this.getColourPalette() }, { 'background': this.getColourPalette() }],
-        // ['link', 'image']
-        ['clean']
-      ]
-    };
-
-
-    return (
-      <div className={styles.storyTypeText + ' ' + styles[this.props.theme]} style={this.getStyle(currentContent)}>
-        <Container className={styles.inner} textAlign={currentContent.alignment}>
-          <div className={styles.editingContainer}>
-            <ReactQuill
-              theme="bubble"
-              modules={quillModules}
-              value={currentContent.body}
-              onChange={value => onEdit('body', value)}
-            />
-          </div>
-        </Container>
-      </div>
-    );
-  }
-}
-
-// The <Text.options /> subcomponent
-Text.Options = Options;
-
-export default Text;
+export default {
+  title: 'Text',
+  description: 'Text Section Type',
+  component,
+  optionsComponent,
+  defaultContent: {
+    body: '<h1>Text Section with Background Image</h1>' +
+    '<p>The British arrived in India in the 1600s, establishing trading posts under the British East India Company which gathered its own enormous private army.</p>' +
+    '<p>In 1857 a large part of the Indian army rebelled against the British authorities, and a year later, the country came under direct British rule; this began the period known as the Raj, meaning "to rule" or "kingdom" in Hindi.</p>' +
+    '<p>The bloody struggle set the tone for the political, social and economic rule established by Britain.</p>',
+    backgroundImage: 'https://femmebot.github.io/google-type/images/indigo-sea.jpg',
+    paddingTop: 120,
+    paddingBottom: 120,
+    alignment: 'left'
+  },
+  availableThemes: [
+    'Partition'
+  ]
+};
