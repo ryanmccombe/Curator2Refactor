@@ -21,9 +21,11 @@ class TwoColumnQuote extends React.PureComponent {
   }
 
   getStyle(currentContent) {
+    console.log(currentContent.backgroundImage);
     const styleObject = {
+
       main: {
-        background: `#fff url('${currentContent.backgroundImage}') no-repeat cover`,
+        backgroundImage: `url('${currentContent.backgroundImage}')`,
         paddingTop: currentContent.paddingTop + 'px',
         paddingBottom: currentContent.paddingBottom + 'px'
       },
@@ -52,6 +54,7 @@ class TwoColumnQuote extends React.PureComponent {
       console.log(currentContent.position)
       styleObject.inner.float = currentContent.position;
     }
+    console.log(styleObject.main.background);
 
     return styleObject;
   }
