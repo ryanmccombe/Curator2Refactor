@@ -63,7 +63,7 @@ export default {
   image // <-- Added definition to this registry
 };
 ```
-Your new section should now be visible and functional within the editor
+Your new section should now be visible and functional within the editor, with an automatically generated thumbnail appearing in "Add a Section", and the full section being displayed when a user adds a section of that type to their storyline
 
 ![Basic Component Complete](./images/basicComponentAdded.png?raw=true "Basic Component Complete")
 

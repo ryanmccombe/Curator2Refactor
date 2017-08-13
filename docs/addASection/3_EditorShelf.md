@@ -33,7 +33,7 @@ export default () => {
 
 Lets update the section definition to import this new component (line 3) and reference it as the optionsComponent (line 10).
 
-We'll also import the default background image we're going to be making editable (line 4) and create a defaultContent property for it
+As we're going to be making the background image dynamic, we'll also import the default background image we're going to be making editable (line 4) and create a defaultContent property for it (line 13) like we did for the caption previously
 
 ```js
 // client/SectionTypes/image/index.js
@@ -60,7 +60,7 @@ You should now see your scaffolded options component within the shelf of any sec
 ### b. Create an Options Component
 The Options component you create will be provided with the same properties as the section component - it will therefore have access to the `section.currentContent`, as well as the `onEdit` function to make changes.
 
-As we did for the main component, lets destructure these properties from the first function parameter (line 5) and using them to drive a form input (line 11),
+As we did for the main component, lets destructure these properties from the first function parameter (line 5) and use them to drive a form input (line 11),
 
 ```js
 // client/SectionTypes/image/options.js
@@ -124,6 +124,6 @@ We should now have a completed new "Image" section with both the image and capti
 
 ### Completed Section
 
-[The final code is available here](https://github.com/ryanmccombe/Curator2Refactor/tree/fbea2d58884030ec2c8a9536b8581ad2b13f71d1/client/SectionTypes/Image), and the completed full size section along with the "Add Section" thumbnail can be seen below:
+[The final code is available here](https://github.com/ryanmccombe/Curator2Refactor/tree/fbea2d58884030ec2c8a9536b8581ad2b13f71d1/client/SectionTypes/Image), and the completed full size section with both properties edited, along with the "Add Section" thumbnail using the default properties can be seen below:
 
 ![Preview](./images/preview.png?raw=true "Preview")

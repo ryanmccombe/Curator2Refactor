@@ -15,9 +15,9 @@ The data storage needs of any section is defined as a simple JavaScript object -
 
 By understanding what parts of our section will be editable, we can identify what data needs to be extracted into that object.  When section content is not being recovered from the database (eg, the user has just added a new section to their story), the editor will provide default content.
 
-The default content for each editable section are properties of the `defaultContent` object of the section definition.
+The default content for each editable section are properties of the `defaultContent` object of the section definition created earlier.
 
-Lets extract the caption into the defintion, by adding the defaultContent object:
+Lets extract the caption into the section defintion, by adding the `defaultContent` property.  `defaultContent` is an object with a property for each piece of dynamic content we want in our section.   For now, that is just the caption:
 
 ```js
 // client/SectionTypes/image/index.js
@@ -36,11 +36,13 @@ export default {
 ### b. How the Editor Provides Section Content
 Now that the editor knows what content we want our section to be provided with, we need to update our section to actually show that content, instead of hardcoding the caption.
 
-When the editor loads your section, it is provided with an object containing a lot of properties.  The current content that the section needs to render is stored in `props.section.currentData`.
+When the editor loads your section, it is provided with an object containing a lot of properties.  This is the first argument of the function we exported as our component - the standard React `props` convention.
+
+As the component we created is a basic functional component, `props` are passed as the first argument to that function.  The current content that the section needs to render is stored in that object as `section.currentContent`.
 
 When the section is first added, that object will have the defaults from the section definition defined earlier, so we would expect that object to have a `caption` property with the value we specified in the previous step
 
-Lets update our component to destructure `currentContent` off the incoming properties argument (line 5) and then update the `<h1>` to use the caption on that object, instead of what we had previously hardcoded (line 8)
+Lets update our component to destructure `section` off that incoming argument, then further destructure `currentContent` off the section object (line 5).  We then update the `<h1>` to use the caption on `currentContent`, instead of what we had previously hardcoded (line 8)
 
 ```js
 // client/SectionTypes/image/component.js
@@ -55,12 +57,12 @@ export default ({ section: { currentContent} }) => {
   );
 };
 ```
-Your section should behave identically, with the added benefit that the caption is dynamic
+Your section should behave identically, with the added benefit that the caption is now being controlled by the editor framework, instead of hardcoded
 
 ### c. How to Edit Content
-In order to make content editable, the editor provides a function on the properties object called `onEdit` that can be called any time something needs updated.  This function accepts 2 arguments - the `property` to change, and the value to set it to.
+In order to make content editable, the editor provides a function on the same properties argument we used previously.  This function, called `onEdit`, can be called any time something needs updated.  This function accepts 2 arguments - the `property` to change, and the value to set it to.
 
-Lets destructure this property off our function argument (line 5) and then replace the `<h1>` with an `<input>` that allows the user to edit the content, and call `onEdit` when the content changes (line 8):
+Lets destructure this function off our function argument (line 5) and then replace the `<h1>` with an `<input>` that allows the user to edit the content.  On that input, we will call `onEdit` when the content changes, informing the framework that what we want to change is the `caption` property, and it needs changed to the value of the input (line 8):
 
 ```js
 // client/SectionTypes/image/component.js
@@ -77,7 +79,11 @@ export default ({ onEdit, section: { currentContent } }) => {
   );
 };
 ```
-With style updates to make the previous `<h1>` styling now apply to this new input, the component should behave exactly as before, with the benefit that the caption can be edited, and the editor is made aware of any changes.
+This is what is considered a "controlled input" in React - we're not changing the value of the input - it is always set to currentContent.caption.
+
+However, behind the scenes, every call to `onEdit` is updating `currentContent`, therefore, the illusion that the input is being directly edited is maintained.
+
+After making CSS updates to cause the previous `<h1>` styling now apply to this new input, the component should behave exactly as before, with the benefit that the caption can be edited, and the editor is made aware of any changes.
 
 ![Caption Editable](./images/editable.png?raw=true "Caption Editable")
 
