@@ -122,4 +122,8 @@ export default ({ onEdit, section: { currentContent } }) => {
 
 We should now have a completed new "Image" section with both the image and caption being editable
 
+### Final Component
+
+The completed section can be seen below, and complete code is available here: https://github.com/ryanmccombe/Curator2Refactor/tree/fbea2d58884030ec2c8a9536b8581ad2b13f71d1/client/SectionTypes/Image
+
 ![Preview](./images/preview.png?raw=true "Preview")
