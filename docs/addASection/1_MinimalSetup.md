@@ -1,6 +1,10 @@
 # 1. Adding Section Types - Minimal Setup
 
-The storyline editor system was set up to allow new section types to be added with minimal changes to the underlying systems.  This guide outlines the 3 steps required to get the most basic form of new section into the editor
+The storyline editor system was set up to allow new section types to be added with minimal changes to the underlying systems.  At the end of this document, we will have added a new static section type, with later pages making this new type editable by users
+
+TODO: Image: Basic Component Added
+
+This guide outlines the 3 steps required to get the most basic form of new section into the editor:
 
   - Create a section (React Component)
   - Create a section definition (a simple JS object that defines your section - title, description, etc)
@@ -26,7 +30,10 @@ export default () => {
   );
 };
 ```
-This component has been styled in the imported `./image.less` file
+This component has been styled in the imported `./image.less` file.
+CSS is out of scope for this document, but if it's of interest, the final CSS properties can be seen within the solution here:
+
+TODO: Link to CSS
 
 ### b. Create a Section Definition
 A section definition is what is imported into the section registry, which allows the editor to make use of the section, and includes information on its use.  It's recommended section definitions sit in the directory you created, alongside all the other section files.  This is the minimal section definition:
@@ -57,5 +64,7 @@ export default {
 };
 ```
 Your new section should now be visible and functional within the editor
+
+TODO: Image: Basic Component Added
 
 Next Step: Making the section dynamic

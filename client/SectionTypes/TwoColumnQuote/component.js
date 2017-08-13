@@ -21,9 +21,7 @@ class TwoColumnQuote extends React.PureComponent {
   }
 
   getStyle(currentContent) {
-    console.log(currentContent.backgroundImage);
     const styleObject = {
-
       main: {
         backgroundImage: `url('${currentContent.backgroundImage}')`,
         paddingTop: currentContent.paddingTop + 'px',
@@ -51,10 +49,8 @@ class TwoColumnQuote extends React.PureComponent {
     if (currentContent.position === 'center') {
       styleObject.inner.margin = '0 auto';
     } else {
-      console.log(currentContent.position)
       styleObject.inner.float = currentContent.position;
     }
-    console.log(styleObject.main.background);
 
     return styleObject;
   }

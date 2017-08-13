@@ -65,10 +65,10 @@ class SectionRenderer extends PureComponent {
               <Button icon negative onClick={onDelete}>
                 <Icon name="trash" />
               </Button>
-              <Button disabled icon color="orange" onClick={onDelete}>
+              <Button icon color="orange" onClick={onDelete}>
                 <Icon name="undo" />
               </Button>
-              <Button disabled icon positive onClick={onDelete}>
+              <Button icon positive onClick={onDelete}>
                 <Icon name="save" />
               </Button>
               <Button floated="right" icon secondary onClick={this.toggleSidebarVisibility} >
@@ -106,10 +106,10 @@ class SectionRenderer extends PureComponent {
               <Button icon negative onClick={onDelete}>
                 <Icon name="trash" />
               </Button>
-              <Button disabled icon color="orange" onClick={onDelete}>
+              <Button icon color="orange" onClick={onDelete}>
                 <Icon name="undo" />
               </Button>
-              <Button disabled icon positive onClick={onDelete}>
+              <Button icon positive onClick={onDelete}>
                 <Icon name="save" />
               </Button>
               <Button icon secondary onClick={this.toggleSidebarVisibility} >

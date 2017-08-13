@@ -36,7 +36,7 @@ class AddSection extends PureComponent {
     return (
       <Container>
         <Header dividing as="h3" textAlign="center" style={{marginTop: '1em'}}>Add a Section</Header>
-        <Card.Group itemsPerRow={4}>
+        <Card.Group itemsPerRow={3}>
           {this.renderSectionTypes()}
         </Card.Group>
       </Container>

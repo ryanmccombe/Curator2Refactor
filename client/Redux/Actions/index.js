@@ -10,6 +10,7 @@ export const SAVE_STORYLINE = 'SAVE_STORIES';
 export const EDIT_SECTION = 'EDIT_SECTION';
 export const DELETE_SECTION = 'DELETE_SECTION';
 export const RESTORE_SECTION = 'RESTORE_SECTION';
+export const REVERT_SECTION = 'REVERT_SECTION';
 export const ADD_SECTION = 'ADD_SECTION';
 export const SAVE_SECTION = 'SAVE_SECTION';
 
