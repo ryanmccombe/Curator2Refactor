@@ -124,6 +124,6 @@ We should now have a completed new "Image" section with both the image and capti
 
 ### Final Component
 
-The completed section can be seen below, and complete code is available here: https://github.com/ryanmccombe/Curator2Refactor/tree/fbea2d58884030ec2c8a9536b8581ad2b13f71d1/client/SectionTypes/Image
+[The final code is available here](https://github.com/ryanmccombe/Curator2Refactor/tree/fbea2d58884030ec2c8a9536b8581ad2b13f71d1/client/SectionTypes/Image), and the completed section can be seen below, and final code is available here:
 
 ![Preview](./images/preview.png?raw=true "Preview")
