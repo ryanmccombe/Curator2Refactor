@@ -2,7 +2,7 @@
 
 After doing the minimal setup to get a working section type, the next step is to make that section editable.  By the end of this page, the caption of the section will be editable by users
 
-TODO: image: editable.png
+![Caption Editable](./images/editable.png?raw=true "Caption Editable")
 
 This is broken down into 3 parts:
 
@@ -79,8 +79,10 @@ export default ({ onEdit, section: { currentContent } }) => {
 ```
 With style updates to make the previous `<h1>` styling now apply to this new input, the component should behave exactly as before, with the benefit that the caption can be edited, and the editor is made aware of any changes.
 
-TODO: image: editable.png
+![Caption Editable](./images/editable.png?raw=true "Caption Editable")
 
 Note: any changes that your section needs saved to the database need to be sent through the onEdit function.  Changes the editor is not made aware of in this manner will not be saved.
 
 The pattern of relying on the currentContent mechanism to show the current state rather than implementing any internal component state is therefore recommended - anything in currentContent will be saved when the user saves.
+
+[Next Step: Adding more options to the editor shelf](./3_EditorShelf.md)

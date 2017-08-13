@@ -3,11 +3,11 @@ The editor provides a mechanism for modifying section properties that do not mak
 
 Section definitions can include an additional optionsComponent property, that will be placed in the shelf to the right of the section, below the theme selection dropdown.
 
-TODO: Image: yourOptionsHere
+![Empty Shelf](./images/yourOptionsHere.png?raw=true "Empty Shelf")
 
 By the end of this document, we will make the background image URL editable by providing a form in that shelf.
 
-TODO: Final Shelf View
+![Final Shelf View](./images/customisationComplete.png?raw=true "Final Shelf View")
 
 There are 3 steps involved:
 
@@ -55,7 +55,7 @@ export default {
 
 You should now see your scaffolded options component within the shelf of any sections using your type
 
-TODO: Image: optionsScaffold
+![Options Scaffold](./images/optionsScaffold.png?raw=true "Options Scaffold")
 
 ### b. Create an Options Component
 The Options component you create will be provided with the same properties as the section component - it will therefore have access to the `section.currentContent`, as well as the `onEdit` function to make changes.
@@ -89,7 +89,7 @@ Note this is using the Segment and Form components from the semantic-ui-react li
 
 This form should now be shown alongside any sections of the type you're making.
 
-TODO: Image: Options Complete
+![Options Complete](./images/optionsComplete.png?raw=true "Options Complete")
 
 Changing the background image will have no effect as that is still being hardcoded within the section component.  Lets fix that now.
 
@@ -122,4 +122,4 @@ export default ({ onEdit, section: { currentContent } }) => {
 
 We should now have a completed new "Image" section with both the image and caption being editable
 
-TODO: Image: Customisation Complete
+![Preview](./images/preview.png?raw=true "Preview")
