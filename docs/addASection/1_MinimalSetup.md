@@ -65,6 +65,7 @@ export default {
 ```
 Your new section should now be visible and functional within the editor
 
-TODO: Image: Basic Component Added
+![Basic Component Complete](./images/basicComponentAdded.png?raw=true "Basic Component Complete")
 
-Next Step: Making the section dynamic
+TODO: Image: Basic Component Added
+[Next Step: Making the section dynamic](./2_DynamicSections.md)
