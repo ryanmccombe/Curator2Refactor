@@ -7,7 +7,7 @@ Section definitions can include an additional optionsComponent property, that wi
 
 By the end of this document, we will make the background image URL editable by providing a form in that shelf.
 
-![Final Shelf View](./images/customisationComplete.png?raw=true "Final Shelf View")
+![Final Shelf View](./images/finalShelfView.png?raw=true "Final Shelf View")
 
 There are 3 steps involved:
 
