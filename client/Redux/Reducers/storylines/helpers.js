@@ -12,14 +12,14 @@ function getSectionIndexFromId(state, storyIndex, id) {
   return state[storyIndex].sections.findIndex(section => section.id === id);
 }
 
-function getNewStoryObject(type, hasChanged = true) {
+function getNewStoryObject(type, isNew = false) {
   return {
     id: Math.random(), // TODO: better way
     type,
     originalContent: getSectionDefaultContent(type),
     currentContent: getSectionDefaultContent(type),
     isDeleted: false,
-    hasChanged
+    isNew
   };
 }
 
