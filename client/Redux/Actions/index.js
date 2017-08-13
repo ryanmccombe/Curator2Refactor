@@ -63,3 +63,15 @@ export function addSection(payload) {
     payload
   };
 }
+
+/*
+ Payload:
+ id: ID of story to update
+ section: ID of the section to add
+ */
+export function revertSection(payload) {
+  return {
+    type: REVERT_SECTION,
+    payload
+  };
+}

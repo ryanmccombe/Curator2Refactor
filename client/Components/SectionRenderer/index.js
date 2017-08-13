@@ -1,3 +1,5 @@
+// TODO: This component is doing too much - extract parts out
+
 import React, { PureComponent } from 'react';
 import { Sidebar, Segment, Button, Icon, Dropdown, Container, Menu, Card } from 'semantic-ui-react';
 
@@ -35,7 +37,7 @@ class SectionRenderer extends PureComponent {
   }
 
   render() {
-    const { section, onEdit, onDelete, onRestore } = this.props;
+    const { section, onEdit, onDelete, onRestore, onRevert } = this.props;
     const { sidebarVisible } = this.state;
 
     if (this.props.thumbnail) {
@@ -65,10 +67,10 @@ class SectionRenderer extends PureComponent {
               <Button icon negative onClick={onDelete}>
                 <Icon name="trash" />
               </Button>
-              <Button icon color="orange" onClick={onDelete}>
+              <Button disabled={!section.hasChanged} icon color="orange" onClick={onRevert}>
                 <Icon name="undo" />
               </Button>
-              <Button icon positive onClick={onDelete}>
+              <Button disabled icon positive onClick={() => { /* TODO */ }}>
                 <Icon name="save" />
               </Button>
               <Button floated="right" icon secondary onClick={this.toggleSidebarVisibility} >
@@ -106,10 +108,10 @@ class SectionRenderer extends PureComponent {
               <Button icon negative onClick={onDelete}>
                 <Icon name="trash" />
               </Button>
-              <Button icon color="orange" onClick={onDelete}>
+              <Button disabled={!section.hasChanged} icon color="orange" onClick={onRevert}>
                 <Icon name="undo" />
               </Button>
-              <Button icon positive onClick={onDelete}>
+              <Button disabled icon positive onClick={() => { /* TODO */ }}>
                 <Icon name="save" />
               </Button>
               <Button icon secondary onClick={this.toggleSidebarVisibility} >

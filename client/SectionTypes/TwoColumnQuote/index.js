@@ -13,7 +13,7 @@ export default {
     '<p>In 1857 a large part of the Indian army rebelled against the British authorities, and a year later, the country came under direct British rule; this began the period known as the Raj, meaning "to rule" or "kingdom" in Hindi.</p>' +
     '<p>War broke out in October 1947 after Pakistan supported a Muslim insurgency in Kashmir.</p>' +
     '<p>It lasted until 1 January 1949, with the establishment of a ceasefire line.</p>',
-    quote: '"Any idea of a united India could never have worked, and in my judgement, it would have led us to a terrific disaster"',
+    quote: '<p>"Any idea of a united India could never have worked, and in my judgement, it would have led us to a terrific disaster"</p>',
     width: 70,
     position: 'center',
     backgroundImage: 'https://femmebot.github.io/google-type/images/valley.jpg',
@@ -28,6 +28,6 @@ export default {
 
   },
   availableThemes: [
-    'Partition'
+    'Default'
   ]
 };

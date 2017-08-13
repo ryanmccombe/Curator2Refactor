@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactQuill from 'react-quill'
+import ReactQuill from 'react-quill';
 import { Form, Button, Container } from 'semantic-ui-react';
 
 import Options from './options';
@@ -12,8 +12,8 @@ class TwoColumnQuote extends React.PureComponent {
 
     this.modules = {
       toolbar: [
-        ['bold', 'italic', 'underline','strike'],
-        [{ 'color': ['white', 'black'] }, { 'background': ['white', 'black'] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ color: ['white', 'black'] }, { background: ['white', 'black'] }],
         // ['link', 'image']
         ['clean']
       ],
@@ -24,17 +24,17 @@ class TwoColumnQuote extends React.PureComponent {
     const styleObject = {
       main: {
         backgroundImage: `url('${currentContent.backgroundImage}')`,
-        paddingTop: currentContent.paddingTop + 'px',
-        paddingBottom: currentContent.paddingBottom + 'px'
+        paddingTop: `${currentContent.paddingTop}px`,
+        paddingBottom: `${currentContent.paddingBottom}px`
       },
       inner: {
-        width: currentContent.width + '%'
+        width: `${currentContent.width}%`
       },
       headerContainer: {
         textAlign: currentContent.headerAlignment
       },
       header: {
-        width: currentContent.headerWidth + '%',
+        width: `${currentContent.headerWidth}%`,
       },
       footer: {
         display: currentContent.showFooter ? 'initial' : 'none',
@@ -62,42 +62,34 @@ class TwoColumnQuote extends React.PureComponent {
       <div className={styles.twoColumnQuote} style={style.main}>
         <Container className={styles.inner} >
           <div style={style.inner}>
-          <div style={style.headerContainer}>
-          <ReactQuill
-            className={styles.storyHeader}
-            style={style.header}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.title}
-            onChange={value => onEdit('title', value)}
-          />
-          </div>
+            <div style={style.headerContainer}>
+              <ReactQuill
+                className={styles.storyHeader}
+                style={style.header}
+                theme="bubble"
+                modules={this.modules}
+                value={currentContent.title}
+                onChange={value => onEdit('title', value)}
+              />
+            </div>
 
-          <ReactQuill
-            className={styles.storyBody}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.body}
-            onChange={value => onEdit('body', value)}
-          />
+            <ReactQuill
+              className={styles.storyBody}
+              theme="bubble"
+              modules={this.modules}
+              value={currentContent.body}
+              onChange={value => onEdit('body', value)}
+            />
 
-          <ReactQuill
-            className={styles.quote}
-            style={style.footer}
-            theme="bubble"
-            modules={this.modules}
-            value={currentContent.quote}
-            onChange={value => {
-
-              // TODO: Null check here because for some reason Quill is calling
-              // onChange on this editor on initialisation
-              // Causes an exception on the thumbnail renderer as onEdit is not passed
-              // Shouldn't be a problem once read only mode is implemented
-              onEdit && onEdit('quote', value);
-            }
-            }
-          />
-          <div className={styles.wind} style={style.animation} />
+            <ReactQuill
+              className={styles.quote}
+              style={style.footer}
+              theme="bubble"
+              modules={this.modules}
+              value={currentContent.quote}
+              onChange={value => onEdit('quote', value)}
+            />
+            <div className={styles.wind} style={style.animation} />
           </div>
         </Container>
       </div>

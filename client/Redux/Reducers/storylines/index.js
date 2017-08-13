@@ -1,8 +1,9 @@
-import { EDIT_SECTION, DELETE_SECTION, ADD_SECTION, RESTORE_SECTION } from '../../Actions/index';
+import { EDIT_SECTION, DELETE_SECTION, ADD_SECTION, RESTORE_SECTION, REVERT_SECTION } from '../../Actions/index';
 import editSection from './editSection';
 import deleteSection from './deleteSection';
 import addSection from './addSection';
 import restoreSection from './restoreSection';
+import revertSection from './revertSection';
 
 import { getNewStoryObject } from './helpers';
 
@@ -24,6 +25,7 @@ export default function (state = initialState, action) {
     case DELETE_SECTION: return deleteSection(state, action);
     case ADD_SECTION: return addSection(state, action);
     case RESTORE_SECTION: return restoreSection(state, action);
+    case REVERT_SECTION: return revertSection(state, action);
     default: return state;
   }
 }

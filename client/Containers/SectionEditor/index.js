@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editSection, deleteSection, restoreSection} from '../../Redux/Actions/index';
+import { editSection, deleteSection, restoreSection, revertSection } from '../../Redux/Actions/index';
 
 import SectionRenderer from '../../Components/SectionRenderer';
 
@@ -13,6 +13,7 @@ class SectionEditor extends Component {
     this.onEdit = this.onEdit.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onRestore = this.onRestore.bind(this);
+    this.onRevert = this.onRevert.bind(this);
   }
 
   onEdit(property, value) {
@@ -35,12 +36,25 @@ class SectionEditor extends Component {
     this.props.restoreSection({
       storyId: this.props.storyId,
       sectionId: this.props.section.id
-    })
+    });
+  }
+
+  onRevert() {
+    this.props.revertSection({
+      storyId: this.props.storyId,
+      sectionId: this.props.section.id
+    });
   }
 
   render() {
     return (
-      <SectionRenderer section={this.props.section} onEdit={this.onEdit} onDelete={this.onDelete} onRestore={this.onRestore} />
+      <SectionRenderer
+        section={this.props.section}
+        onEdit={this.onEdit}
+        onDelete={this.onDelete}
+        onRestore={this.onRestore}
+        onRevert={this.onRevert}
+      />
     );
   }
 }
@@ -50,7 +64,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     editSection,
     deleteSection,
-    restoreSection
+    restoreSection,
+    revertSection
   }, dispatch);
 }
 

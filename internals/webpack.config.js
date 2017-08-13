@@ -63,7 +63,7 @@ module.exports = {
     bundle: [
       'webpack-hot-middleware/client/?quiet=true',
       'react-hot-loader/patch',
-      './client/component.js'
+      './client/index.js'
     ]
   },
 

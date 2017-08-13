@@ -17,6 +17,6 @@ export default {
     alignment: 'left'
   },
   availableThemes: [
-    'Partition'
+    'Default'
   ]
 };
