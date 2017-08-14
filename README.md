@@ -1,3 +1,9 @@
+
+# Storyline Editor Component Structure:
+https://docs.google.com/drawings/d/1iOXHGuLlNUx7rpMIhFYFEw0kebfg-VLyHTaifIy8b9s/edit?usp=sharing
+
+---
+
 # BBC Rewind React Scaffold
 
 This repo is a scaffolded development environment for React applications
