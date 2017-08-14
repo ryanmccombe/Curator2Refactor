@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 // Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addSection } from '../../Redux/Actions/index';
+import { addSection } from '../../Redux/Actions/storylines';
 
 // Components
 import Header from '../../Components/MainMenu';
@@ -48,7 +49,10 @@ class StorylineEditor extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    storyline: state.storylines[ownProps.match.params.id]
+    // TODO: Get from API
+    // /storylines container is getting the storylines - they won't exist if user comes here
+    // directly so in that case, we just let them edit the first storyline in state for now
+    storyline:  _.find(state.storylines, { id: ownProps.match.params.id }) || state.storylines[0]
   };
 }
 

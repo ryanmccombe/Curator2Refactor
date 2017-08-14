@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editSection, deleteSection, restoreSection, revertSection } from '../../Redux/Actions/index';
+import { editSection, deleteSection, restoreSection, revertSection } from '../../Redux/Actions/storylines';
 
 import SectionRenderer from '../../Components/SectionRenderer';
 

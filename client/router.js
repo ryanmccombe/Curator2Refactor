@@ -16,8 +16,9 @@ export default class Router extends Component {
     return (
       <BrowserRouter>
         <div>
-          <Route path="/" render={() => {
+          <Route path="/" exact render={() => {
             // Temp dev aide: Everything redirects to editing a storyline
+            // return <Redirect to="/storylines" />;
             return <Redirect to="/storyline/0/english/edit" />;
           }} />
           <Route path="/" exact component={Home} />

@@ -8,23 +8,35 @@ import { Container, Segment } from 'semantic-ui-react';
 // functionality to the base component - receiving state updates, and dispatching actions
 import { connect } from 'react-redux';
 
-// TODO: This container is not yet dispatching actions
-// import { bindActionCreators } from 'redux';
-// import { someAction } from '../../Redux/Actions/index';
+
+import { bindActionCreators } from 'redux';
+import { getStorylinesAsync } from '../../Redux/Actions/storylines';
 
 import Header from '../../Components/MainMenu';
-import StorylinesList from '../../Components/StorylinesList';
 
 // This is a "container" / "stateful" / "smart" component that is concerned with business logic
 // for a clearly defined area of the application, and communicates with the redux store
 // It orchestrates presentation by deferring to presentational components
 class Storylines extends Component {
+  componentWillMount() {
+    this.props.getStorylinesAsync();
+  }
+
+  renderStorylines(storylines) {
+    return storylines.map(storyline =>
+      <Link key={storyline.id} to={`/storyline/${storyline.id}/english/edit`}>
+        {storyline.title}
+      </Link>
+    );
+  }
+
   render() {
     const { storylines } = this.props;
+    console.log(storylines);
     return (
       <div>
         <Header activePage="storylines" />
-        <StorylinesList storylines={storylines} />
+        {this.renderStorylines(storylines)}
       </div>
     );
   }
@@ -40,13 +52,11 @@ function mapStateToProps({ storylines }) {
   };
 }
 
-// Function that is passed to connect to determine what actions the component can dispatch
-// TODO: This container is not yet dispatching actions
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({
-//     someAction
-//   }, dispatch);
-// }
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({
+    getStorylinesAsync
+  }, dispatch);
+}
 
-export default connect(mapStateToProps)(Storylines);
+export default connect(mapStateToProps, mapDispatchToProps)(Storylines);
 
