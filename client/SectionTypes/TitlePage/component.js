@@ -4,6 +4,7 @@ import { Container, Header } from 'semantic-ui-react';
 import styles from './titlePage.less';
 
 import BBCLogo from '../../Components/BBCLogo';
+import ScrollIndicator from '../../Components/ScrollIndicator';
 
 export default ({ section: { currentContent: { videoPoster, backgroundVideo } } }) => {
   return (
@@ -41,6 +42,7 @@ export default ({ section: { currentContent: { videoPoster, backgroundVideo } } 
 
         <div className={styles.footer}>
           Scroll down to take a journey through the key events of the last 70 years and beyond
+          <ScrollIndicator width="50px" />
         </div>
       </Container>
     </div>
