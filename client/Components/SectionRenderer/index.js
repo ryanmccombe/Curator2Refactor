@@ -40,18 +40,23 @@ class SectionRenderer extends PureComponent {
     const { section, onEdit, onDelete, onRestore, onRevert } = this.props;
     const { sidebarVisible } = this.state;
 
+    // Defer to thumbnail renderer if parent component requested thumbnail view
+    // TODO: Move from here - single responsibility
     if (this.props.thumbnail) {
       return <ThumbnailRenderer sectionDefinition={this.sectionDefinition} {...this.props} />;
     }
 
+    // If the secion is deleted, defer to the SectionDeleted component
+    // TODO: Move from here - single responsibility
     if (section.isDeleted) {
       return (
-        <div>
-          <SectionDeleted section={section} onRestore={onRestore} />
-        </div>
+        <SectionDeleted section={section} onRestore={onRestore} />
       );
     }
 
+    // Otherwise, return the main section view
+    // TODO: Move from here - single responsibility
+    // TODO: Move the the Button Group / Dropdown toolbar code from here, and don't repeat it
     return (
       <Sidebar.Pushable>
         <Sidebar

@@ -5,6 +5,7 @@ import reducers from './Reducers';
 export default createStore(
   reducers,
   {}, // initial state (we set initial state in reducers, so this can be empty)
+
   // Compose allows us to combine redux middleware, like async / ajax support
   compose(
     // Only applying the redux dev tools middleware for now

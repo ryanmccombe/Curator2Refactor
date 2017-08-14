@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 
-import SectionRenderer from '../SectionRenderer/';
 import SectionEditor from '../../Containers/SectionEditor';
 
 class StorylineRendererFullEditor extends Component {
