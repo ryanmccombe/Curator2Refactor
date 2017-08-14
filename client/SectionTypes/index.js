@@ -1,9 +1,11 @@
 import text from './Text/';
 import twoColumnQuote from './TwoColumnQuote/';
-import image from './Image'; // <-- Importing your definition
+import image from './Image';
+import title from './TitlePage';
 
 export default {
+  title,
   text,
   twoColumnQuote,
-  image // <-- Added definition to this registry
+  image,
 };

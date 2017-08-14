@@ -12,6 +12,7 @@ const initialState = [{
   id: 1,
   title: 'Demo Storyline',
   sections: [
+    getNewStoryObject('title'),
     getNewStoryObject('twoColumnQuote'),
     getNewStoryObject('image'),
     getNewStoryObject('text'),
