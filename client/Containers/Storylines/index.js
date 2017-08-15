@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { getStorylinesAsync } from '../../Redux/Actions/storylines';
 
 import Header from '../../Components/MainMenu';
+import StorylinesList from '../../Components/StorylinesList';
 
 // This is a "container" / "stateful" / "smart" component that is concerned with business logic
 // for a clearly defined area of the application, and communicates with the redux store
@@ -22,21 +23,12 @@ class Storylines extends Component {
     this.props.getStorylinesAsync();
   }
 
-  renderStorylines(storylines) {
-    return storylines.map(storyline =>
-      <Link key={storyline.id} to={`/storyline/${storyline.id}/english/edit`}>
-        {storyline.title}
-      </Link>
-    );
-  }
-
   render() {
     const { storylines } = this.props;
-    console.log(storylines);
     return (
       <div>
         <Header activePage="storylines" />
-        {this.renderStorylines(storylines)}
+        <StorylinesList storylines={storylines} />
       </div>
     );
   }
